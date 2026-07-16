@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diagnóstico FDE — Jucineide Costa</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.6.0/dist/tabler-icons.min.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#FAF8F6;color:#1A0A0E;min-height:100vh}
+.wrap{max-width:560px;margin:0 auto;padding:2rem 1.25rem}
+.screen{display:none}
+.screen.active{display:block}
+.badge{display:inline-block;background:#6B2737;color:#fff;font-size:11px;font-weight:600;letter-spacing:2px;padding:4px 14px;border-radius:4px;margin-bottom:1.5rem}
+.hero-title{font-family:Georgia,serif;font-size:30px;font-weight:700;color:#1A0A0E;line-height:1.25;margin-bottom:.75rem}
+.hero-sub{font-size:15px;color:#555;line-height:1.65;margin-bottom:.5rem}
+.gold-line{width:80px;height:4px;background:#C9A84C;border-radius:2px;margin:1rem 0}
+.hero-meta{display:flex;gap:1.5rem;margin:1.25rem 0;flex-wrap:wrap}
+.meta-item{display:flex;align-items:center;gap:6px;font-size:13px;color:#888670}
+.meta-item i{color:#6B2737;font-size:16px}
+.btn-primary{display:block;width:100%;background:#6B2737;color:#fff;border:none;border-radius:10px;padding:15px;font-size:16px;font-weight:600;cursor:pointer;text-align:center;transition:background .15s;margin-top:1.5rem}
+.btn-primary:hover{background:#4A1A25}
+.progress-bar{height:5px;background:#E8D5DA;border-radius:3px;margin-bottom:1.5rem;overflow:hidden}
+.progress-fill{height:100%;background:#6B2737;border-radius:3px;transition:width .3s}
+.q-counter{font-size:12px;color:#8A6070;margin-bottom:.4rem}
+.q-axis{font-size:11px;font-weight:700;letter-spacing:1.5px;color:#C9A84C;margin-bottom:.6rem;text-transform:uppercase}
+.q-text{font-family:Georgia,serif;font-size:21px;font-weight:700;color:#1A0A0E;line-height:1.35;margin-bottom:1.5rem}
+.opt-btn{display:block;width:100%;background:#fff;border:1px solid #E8D5DA;border-radius:10px;padding:14px 16px;font-size:14px;color:#1A0A0E;cursor:pointer;text-align:left;margin-bottom:10px;transition:border-color .15s,background .15s;line-height:1.45}
+.opt-btn:hover{border-color:#6B2737;background:#F5EAED}
+.result-top{text-align:center;margin-bottom:1.75rem}
+.result-icon{font-size:40px;margin-bottom:.75rem}
+.result-level{font-size:11px;font-weight:700;letter-spacing:2px;color:#6B2737;text-transform:uppercase;margin-bottom:.5rem}
+.result-title{font-family:Georgia,serif;font-size:24px;font-weight:700;color:#1A0A0E;margin-bottom:.75rem}
+.gold-line-c{width:80px;height:4px;background:#C9A84C;border-radius:2px;margin:.75rem auto 1rem}
+.result-desc{font-size:14px;color:#555;line-height:1.65;text-align:left}
+.axes-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:1.5rem 0}
+.axis-card{background:#fff;border:1px solid #E8D5DA;border-radius:10px;padding:12px 14px}
+.axis-name{font-size:12px;font-weight:600;color:#8A6070;margin-bottom:4px}
+.axis-badge{font-size:11px;font-weight:600;padding:2px 10px;border-radius:20px;display:inline-block;margin-bottom:8px}
+.critico{background:#FFEBEE;color:#C62828}
+.atencao{background:#FFF8E1;color:#7B5A00}
+.solido{background:#E8F5EE;color:#1A5C38}
+.bar-bg{height:6px;background:#E8D5DA;border-radius:3px;overflow:hidden}
+.bar-fill{height:100%;border-radius:3px}
+.steps-title{font-size:14px;font-weight:700;color:#1A0A0E;margin:.25rem 0 1rem}
+.step-item{display:flex;gap:12px;margin-bottom:14px;align-items:flex-start}
+.step-num{width:24px;height:24px;border-radius:50%;background:#6B2737;color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.step-text{font-size:14px;color:#555;line-height:1.6}
+.next-box{background:#F5EAED;border-radius:10px;padding:18px;margin-top:1.5rem}
+.next-title{font-size:13px;font-weight:700;color:#6B2737;margin-bottom:6px}
+.next-desc{font-size:13px;color:#555;line-height:1.55;margin-bottom:14px}
+.btn-wa{display:block;width:100%;background:#25D366;color:#fff;border:none;border-radius:10px;padding:14px;font-size:15px;font-weight:700;cursor:pointer;text-align:center;text-decoration:none;transition:background .15s}
+.btn-wa:hover{background:#1EB857}
+.btn-wa i{margin-right:6px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- INTRO -->
+<div class="screen active" id="s-intro">
+  <div class="badge">MÉTODO FDE</div>
+  <h1 class="hero-title">Diagnóstico FDE</h1>
+  <p class="hero-sub">Descubra em 2 minutos o que está travando o crescimento do seu escritório previdenciário e receba um plano de ação personalizado na mesma hora.</p>
+  <div class="gold-line"></div>
+  <div class="hero-meta">
+    <div class="meta-item"><i class="ti ti-clock"></i> 2 minutos</div>
+    <div class="meta-item"><i class="ti ti-list-check"></i> 12 perguntas</div>
+    <div class="meta-item"><i class="ti ti-file-text"></i> Plano de ação grátis</div>
+  </div>
+  <button class="btn-primary" onclick="start()">Iniciar diagnóstico</button>
+</div>
+
+<!-- QUIZ -->
+<div class="screen" id="s-quiz">
+  <div class="progress-bar"><div class="progress-fill" id="prog" style="width:0%"></div></div>
+  <div class="q-counter" id="qcount"></div>
+  <div class="q-axis" id="qaxis"></div>
+  <div class="q-text" id="qtext"></div>
+  <div id="opts"></div>
+</div>
+
+<!-- RESULTADO -->
+<div class="screen" id="s-result">
+  <div class="result-top">
+    <div class="result-icon" id="r-icon"></div>
+    <div class="result-level" id="r-level"></div>
+    <h2 class="result-title" id="r-title"></h2>
+    <div class="gold-line-c"></div>
+    <div class="result-desc" id="r-desc"></div>
+  </div>
+  <div class="axes-grid" id="axes-grid"></div>
+  <div class="steps-title">Seus 3 primeiros passos:</div>
+  <div id="steps"></div>
+  <div class="next-box">
+    <div class="next-title" id="n-title"></div>
+    <div class="next-desc" id="n-desc"></div>
+    <a class="btn-wa" id="btn-wa" href="#" target="_blank"><i class="ti ti-brand-whatsapp"></i>Falar com Jucineide no WhatsApp</a>
+  </div>
+</div>
+
+</div>
+<script>
+const Q=[
+  {ax:"Operação e Processo",ak:0,t:"Como funciona o seu escritório quando você está ausente?",o:["Para completamente — tudo depende de mim","Funciona parcialmente — algumas coisas avançam","Funciona normalmente — minha equipe resolve"]},
+  {ax:"Operação e Processo",ak:0,t:"Seus serviços previdenciários têm processo documentado?",o:["Não tenho nada documentado","Tenho algumas anotações, mas nada formal","Tenho POPs documentados e seguidos"]},
+  {ax:"Operação e Processo",ak:0,t:"Quando você passa uma tarefa para a equipe, ela volta:",o:["Com muitos erros — preciso refazer quase tudo","Com ajustes — preciso corrigir bastante","No padrão — apenas pequenos ajustes"]},
+  {ax:"Equipe e Delegação",ak:1,t:"Sua equipe sabe exatamente o que fazer em cada etapa do processo?",o:["Não — cada um faz do seu jeito","Mais ou menos — está na minha cabeça","Sim — papéis claros e documentados"]},
+  {ax:"Equipe e Delegação",ak:1,t:"Como você descreveria a delegação no seu escritório hoje?",o:["Não delego — é mais rápido fazer eu mesma","Delego algumas coisas, mas acompanho tudo de perto","Delego com confiança — a equipe opera com autonomia"]},
+  {ax:"Equipe e Delegação",ak:1,t:"Você tem algum processo de treinamento para novos membros da equipe?",o:["Não — aprende fazendo e perguntando","Tenho uma explicação verbal, mas nada formalizado","Tenho um roteiro de treinamento documentado"]},
+  {ax:"Financeiro e Previsibilidade",ak:2,t:"Como você descreveria o seu faturamento nos últimos 6 meses?",o:["Muito oscilante — mês bom, mês ruim sem explicação","Oscila, mas consigo identificar alguns padrões","Previsível — sei aproximadamente o que vai entrar"]},
+  {ax:"Financeiro e Previsibilidade",ak:2,t:"Você sabe quanto vai faturar nos próximos 60 dias com base nos processos já abertos?",o:["Não faço ideia","Tenho uma estimativa vaga","Sei com razoável precisão"]},
+  {ax:"Financeiro e Previsibilidade",ak:2,t:"Seus serviços previdenciários geram honorários em momentos diferentes do ano?",o:["Não — dependo de um tipo de receita só, tudo vence na mesma época","Tenho dois tipos, mas não é algo planejado","Sim — tenho serviços que pagam em 3, 6 e 12 meses ativos ao mesmo tempo"]},
+  {ax:"Prospecção e Crescimento",ak:3,t:"Como chegam novos clientes ao seu escritório hoje?",o:["Indicação e sorte — sem previsibilidade","Tenho algumas fontes, mas oscila muito","Tenho um funil ativo e previsível"]},
+  {ax:"Prospecção e Crescimento",ak:3,t:"Você tem um script ou roteiro de abordagem para os seus serviços previdenciários?",o:["Não — cada abordagem é diferente","Tenho algumas falas, mas nada estruturado","Sim — tenho script validado e uso consistentemente"]},
+  {ax:"Prospecção e Crescimento",ak:3,t:"Como você se vê daqui a 6 meses se não mudar nada no escritório?",o:["No mesmo lugar ou pior — preciso mudar agora","Com algum progresso, mas ainda travada nos mesmos problemas","Em crescimento — mas quero acelerar"]},
+];
+
+const AN=["Operação e Processo","Equipe e Delegação","Financeiro e Previsibilidade","Prospecção e Crescimento"];
+
+const R=[
+  {range:[0,8],icon:"🔴",level:"Diagnóstico: Escritório Reativo",title:"Escritório Reativo",
+   desc:"Seu escritório opera no improviso. Você é o centro de tudo e quando você para, ele para. A boa notícia é que esse é o ponto de partida de quase todo advogado previdenciário que depois constrói algo sólido. O que falta não é esforço. O que falta é estrutura. E estrutura se constrói com método.",
+   steps:["Escolha um único serviço previdenciário que você mais repete e mapeie todas as etapas dele do início ao fim. Escreva como se fosse ensinar alguém do zero.","Identifique quais dessas etapas não precisam da sua assinatura ou decisão. Essas são as primeiras candidatas à delegação.","Defina uma meta de contratos por mês para esse serviço e crie um canal de prospecção ativo para ele. Indicação não é canal. É sorte."],
+   nt:"O próximo passo certo para você:",nd:"Esses três passos vão mostrar onde está o maior gargalo. Mas aplicar o método completo sozinha, no meio da rotina de um escritório que já está sobrecarregado, é onde a maioria trava. A Implantação FDE e a Mentoria foram criadas para esse momento exato.",ws:"Resultado: Escritório Reativo (0 a 8 pontos)"},
+  {range:[9,16],icon:"🟡",level:"Diagnóstico: Escritório em Transição",title:"Escritório em Transição",
+   desc:"Você já percebeu que precisa mudar e começou a dar alguns passos. Tem coisas funcionando. Mas falta consistência. O risco nessa fase é achar que está bom o suficiente e parar antes de cruzar o limiar. Escritórios que ficam aqui costumam oscilar por anos sem crescer de verdade.",
+   steps:["Pegue o serviço que você mais fecha e documente o POP completo: do primeiro contato ao encerramento. Inclua o que a equipe deve fazer, quando e como. Sem isso, a delegação sempre vai voltar para você.","Aplique o filtro FDE nos seus serviços: quais são Fáceis de padronizar, Delegáveis para a equipe e Escaláveis sem aumentar seu tempo? Os que não passam nesse filtro estão te custando mais do que valem.","Calcule quanto você vai faturar nos próximos 60 dias com base nos processos já abertos. Se não conseguir responder isso com precisão, seu caixa está no improviso."],
+   nt:"O próximo passo certo para você:",nd:"A transição que você está vivendo tem um método. Não precisa inventar sozinha. A Mentoria FDE foi desenhada exatamente para esse momento: você aplica no seu ritmo, com direção clara e materiais prontos.",ws:"Resultado: Escritório em Transição (9 a 16 pontos)"},
+  {range:[17,24],icon:"🟢",level:"Diagnóstico: Escritório com Base",title:"Escritório com Base",
+   desc:"Você construiu mais do que a maioria. Tem processos, tem equipe com alguma autonomia e tem noção do seu financeiro. O que falta agora não é arrumar a casa. É escalar. Replicar o método nos serviços que ainda operam no improviso e construir as camadas de receita que trazem previsibilidade real.",
+   steps:["Mapeie quais serviços do seu portfólio ainda não têm POP documentado. Esses são os gargalos escondidos que aparecem quando o volume aumenta.","Calcule o potencial de faturamento do seu portfólio atual se cada serviço operasse no volume máximo que sua equipe consegue suportar. Esse número vai mostrar quanto você está deixando na mesa.","Identifique o próximo serviço FDE que você quer implantar e defina um prazo. Sem prazo, expansão vira intenção."],
+   nt:"O próximo passo certo para você:",nd:"Você está pronta para o próximo nível. A diferença entre onde você está e onde quer chegar é velocidade e personalização. A Implantação FDE foi feita para quem quer chegar lá mais rápido e com acompanhamento dentro do escritório.",ws:"Resultado: Escritório com Base (17 a 24 pontos)"},
+];
+
+let cur=0,scores=[0,0,0,0];
+
+function show(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');}
+
+function start(){show('s-quiz');render(0);}
+
+function render(i){
+  const q=Q[i];
+  document.getElementById('qcount').textContent=`Pergunta ${i+1} de 12`;
+  document.getElementById('qaxis').textContent=q.ax;
+  document.getElementById('qtext').textContent=q.t;
+  document.getElementById('prog').style.width=((i/12)*100)+'%';
+  const c=document.getElementById('opts');c.innerHTML='';
+  q.o.forEach((o,idx)=>{
+    const b=document.createElement('button');
+    b.className='opt-btn';b.textContent=o;
+    b.onclick=()=>{scores[q.ak]+=idx;cur++;cur<12?render(cur):result();};
+    c.appendChild(b);
+  });
+}
+
+function result(){
+  const total=scores.reduce((a,b)=>a+b,0);
+  const r=R.find(x=>total>=x.range[0]&&total<=x.range[1])||R[0];
+  document.getElementById('r-icon').textContent=r.icon;
+  document.getElementById('r-level').textContent=r.level;
+  document.getElementById('r-title').textContent=r.title;
+  document.getElementById('r-desc').textContent=r.desc;
+
+  const grid=document.getElementById('axes-grid');grid.innerHTML='';
+  scores.forEach((s,i)=>{
+    const pct=Math.round((s/6)*100);
+    let cls,lbl,clr;
+    if(pct<=33){cls='critico';lbl='Crítico';clr='#E24B4A';}
+    else if(pct<=66){cls='atencao';lbl='Atenção';clr='#C9A84C';}
+    else{cls='solido';lbl='Sólido';clr='#1A5C38';}
+    grid.innerHTML+=`<div class="axis-card"><div class="axis-name">${AN[i]}</div><span class="axis-badge ${cls}">${lbl}</span><div class="bar-bg"><div class="bar-fill" style="width:${pct}%;background:${clr}"></div></div></div>`;
+  });
+
+  const st=document.getElementById('steps');st.innerHTML='';
+  r.steps.forEach((s,i)=>{st.innerHTML+=`<div class="step-item"><div class="step-num">${i+1}</div><div class="step-text">${s}</div></div>`;});
+
+  document.getElementById('n-title').textContent=r.nt;
+  document.getElementById('n-desc').textContent=r.nd;
+  const msg=encodeURIComponent(`Olá Jucineide! Acabei de fazer o Diagnóstico FDE.\n\n${r.ws}\n\nGostaria de entender qual é o caminho certo para o meu escritório.`);
+  document.getElementById('btn-wa').href=`https://wa.me/5587998094537?text=${msg}`;
+  show('s-result');
+}
+</script>
+</body>
+</html>
